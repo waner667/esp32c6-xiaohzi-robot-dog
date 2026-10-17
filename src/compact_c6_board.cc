@@ -407,8 +407,81 @@ private:
         xTaskCreate(OledWatchTask, "oled_watch", 4096, this, 3, nullptr);
     }
 
+    // 按键 GPIO 原始电平轮询（诊断用，独立于 iot_button 驱动）。
+    //
+    // 存在的意义：iot_button 驱动只在「电平变化被正确识别」时才回调，而驱动本身
+    // 不打印任何日志。若某一路 GPIO 长期被接地（例如按键接线把同端短接自己），
+    // 驱动会把它当成"开机就一直按住"，先触发一次 LONG press，随后完全静默 ——
+    // 现象是"按了没反应"且串口毫无线索。这里直接轮询 gpio_get_level()，绕过
+    // 驱动层，看到的是物理世界的真实电平。
+    //
+    // 由 config.h 的 BUTTON_GPIO_PROBE 控制，默认关闭。
+#if BUTTON_GPIO_PROBE
+    static void ButtonGpioProbeTask(void* arg) {
+        (void)arg;
+        struct PinDesc { gpio_num_t gpio; const char* name; };
+        const PinDesc pins[] = {
+            {BOOT_BUTTON_GPIO,         "boot  GPIO9 "},
+            {TOUCH_BUTTON_GPIO,        "touch GPIO21"},
+            {VOLUME_UP_BUTTON_GPIO,    "vol+  GPIO20"},
+            {VOLUME_DOWN_BUTTON_GPIO,  "vol-  GPIO19"},
+        };
+        const int n = sizeof(pins) / sizeof(pins[0]);
+        int last[4] = {-1, -1, -1, -1};
+
+        ESP_LOGI(TAG, "btn_probe: watching %d pins, 50ms poll (1=high/idle, 0=low/pressed)", n);
+        while (true) {
+            for (int i = 0; i < n; i++) {
+                int lv = gpio_get_level(pins[i].gpio);
+                if (last[i] < 0) {
+                    // 首轮只建立基线，避免启动瞬间刷一屏
+                    last[i] = lv;
+                    if (lv == 0) {
+                        ESP_LOGW(TAG, "btn_probe: %s is LOW at startup -- switch may be wired "
+                                      "to itself (3-pin tact switch: outer pins share one side)",
+                                 pins[i].name);
+                    }
+                    continue;
+                }
+                if (lv != last[i]) {
+                    ESP_LOGI(TAG, "btn_probe: %s %s (%d -> %d)",
+                             pins[i].name, lv == 0 ? "PRESSED" : "released",
+                             last[i], lv);
+                    last[i] = lv;
+                }
+            }
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+    }
+#endif  // BUTTON_GPIO_PROBE
+
     void InitializeButtons() {
+#if BUTTON_GPIO_PROBE
+        // ===== 按键 GPIO 诊断（可开关，默认开）=====
+        //
+        // 为什么需要：boards/common/button.cc 里一行日志都没有，按下按键时串口完全静默，
+        // 无法区分「硬件没接通」和「驱动没触发」。这个任务独立于 iot_button 组件，
+        // 直接轮询 GPIO 电平，所以无论驱动层通不通都能看到物理层的真实状态。
+        //
+        // 判读表（板子上电后未按键时）：
+        //   电平一直是 1（高）      -> 上拉正常，按键一按应该变 0；不变说明按键没接到该脚
+        //   电平一直是 0（低）      -> 脚被短到地了（接线把同一端短接自己 / 接错 GND）
+        //   一按就跳变             -> 硬件与配置都对，问题在回调注册
+        //   完全不跳变              -> 该脚的按键根本没接通（焊接/排线/板子本身）
+        //
+        // ⚠️ 判读铁律：gpio_get_level() 读到 0 就是物理上真被拉低。外设 claim 只
+        //    改写输出路径，不会改读路径，所以不存在"被 USB Serial/JTAG 抢走导致
+        //    读数异常"这种可能 —— 2026-10-17 曾据此误判过。
+        ESP_LOGI(TAG, "=== button GPIO probe ===");
+        ESP_LOGI(TAG, "  boot(GPIO9)=%d  touch(GPIO21)=%d  vol+(GPIO20)=%d  vol-(GPIO19)=%d",
+                 gpio_get_level(BOOT_BUTTON_GPIO), gpio_get_level(TOUCH_BUTTON_GPIO),
+                 gpio_get_level(VOLUME_UP_BUTTON_GPIO), gpio_get_level(VOLUME_DOWN_BUTTON_GPIO));
+        ESP_LOGI(TAG, "  (1=高=未按, 0=低=按下；按下面板按键看哪一路会变)");
+        xTaskCreate(ButtonGpioProbeTask, "btn_probe", 3072, this, 2, nullptr);
+#endif  // BUTTON_GPIO_PROBE
+
         boot_button_.OnClick([this]() {
+            ESP_LOGI(TAG, "KEY boot(GPIO9) click");
             auto& app = Application::GetInstance();
             if (app.GetDeviceState() == kDeviceStateStarting) {
                 EnterWifiConfigMode();
@@ -417,13 +490,16 @@ private:
             app.ToggleChatState();
         });
         touch_button_.OnPressDown([this]() {
+            ESP_LOGI(TAG, "KEY touch(GPIO21) press down -> StartListening");
             Application::GetInstance().StartListening();
         });
         touch_button_.OnPressUp([this]() {
+            ESP_LOGI(TAG, "KEY touch(GPIO21) press up -> StopListening");
             Application::GetInstance().StopListening();
         });
 
         volume_up_button_.OnClick([this]() {
+            ESP_LOGI(TAG, "KEY vol+(GPIO20) click");
             auto codec = GetAudioCodec();
             auto volume = codec->output_volume() + 10;
             if (volume > 100) {
@@ -434,11 +510,13 @@ private:
         });
 
         volume_up_button_.OnLongPress([this]() {
+            ESP_LOGI(TAG, "KEY vol+(GPIO20) LONG press -> max volume");
             GetAudioCodec()->SetOutputVolume(100);
             GetDisplay()->ShowNotification(Lang::Strings::MAX_VOLUME);
         });
 
         volume_down_button_.OnClick([this]() {
+            ESP_LOGI(TAG, "KEY vol-(GPIO19) click");
             auto codec = GetAudioCodec();
             auto volume = codec->output_volume() - 10;
             if (volume < 0) {
@@ -449,6 +527,7 @@ private:
         });
 
         volume_down_button_.OnLongPress([this]() {
+            ESP_LOGI(TAG, "KEY vol-(GPIO19) LONG press -> mute");
             GetAudioCodec()->SetOutputVolume(0);
             GetDisplay()->ShowNotification(Lang::Strings::MUTED);
         });

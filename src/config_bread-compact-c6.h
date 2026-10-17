@@ -67,4 +67,14 @@
 #define SERVO_GPIO_LF GPIO_NUM_22  // 舵机3 左前腿
 #define SERVO_GPIO_LB GPIO_NUM_23  // 舵机4 左后腿
 
+// 按键 GPIO 原始电平探针（诊断用）。
+//
+// 2026-10-17：按键"没反应"的根因排查全靠它 —— 开机基线电平直接给出
+// `boot(GPIO9)=1  touch(GPIO21)=0  vol+(GPIO20)=0  vol-(GPIO19)=0`，
+// 说明三路从开机起就一直被接地（真根因：三脚微动开关 A|B|C 里外侧两脚
+// 同属一端，按二脚思路接等于把同一端短接自己）。
+//
+// 正式固件默认关闭（避免每次按键都刷串口），需要排查时置 1 重编译即可。
+#define BUTTON_GPIO_PROBE 0
+
 #endif // _BOARD_CONFIG_H_
