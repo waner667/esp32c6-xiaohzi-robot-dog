@@ -1,0 +1,39 @@
+# 编译产物与中间文件
+build/
+*.o
+*.obj
+*.a
+*.elf
+*.map
+*.bin.stale
+
+# 临时目录
+tmp/
+temp/
+.tmp/
+
+# 桌面快捷方式（本机生成，含绝对路径）
+*.lnk
+
+# 设备配置（含 WiFi 密码 / 设备密钥，绝不能提交）
+config.json
+*.key
+*.pem
+*_credentials.json
+partitions.csv.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 日志（保留单个有价值的需手动加白）
+*.log
+!logs/_build_v5.log
+
+# Python
+__pycache__/
+*.pyc
+.esptool_lib/
