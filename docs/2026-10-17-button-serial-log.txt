@@ -1,0 +1,514 @@
+ESP-ROM:esp32c6-20220919
+
+Build:Sep 19 2022
+
+rst:0x1 (POWERON),boot:0x6c (SPI_FAST_FLASH_BOOT)
+
+SPIWP:0xee
+
+mode:DIO, clock div:2
+
+load:0x40875730,len:0x550
+
+load:0x4086b910,len:0xcb0
+
+load:0x4086e610,len:0x2f30
+
+entry 0x4086b910
+
+I (31) cpu_start: Unicore app
+
+I (39) cpu_start: GPIO 17 and 16 are used as console UART I/O pins
+
+I (39) cpu_start: Pro cpu start user code
+
+I (39) cpu_start: cpu freq: 160000000 Hz
+
+I (41) app_init: Application information:
+
+I (45) app_init: Project name:     xiaozhi
+
+I (48) app_init: App version:      2.5.2
+
+I (52) app_init: Compile time:     Oct 14 2026 21:16:06
+
+I (57) app_init: ELF file SHA256:  bdc0b9e41...
+
+I (61) app_init: ESP-IDF:          v6.1
+
+I (65) efuse_init: Min chip rev:     v0.0
+
+I (69) efuse_init: Max chip rev:     v0.99 
+
+I (72) efuse_init: Chip rev:         v0.2
+
+I (76) heap_init: Initializing. RAM available for dynamic allocation:
+
+I (82) heap_init: At 4081FEF0 len 0005C720 (369 KiB): RAM
+
+I (87) heap_init: At 4087C610 len 00002F54 (11 KiB): RAM
+
+I (93) heap_init: At 50000024 len 00003FB4 (15 KiB): RTCRAM
+
+W (98) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig
+
+I (111) spi_flash: detected chip: generic
+
+I (114) spi_flash: flash io: qio
+
+I (118) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+
+I (124) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+
+I (131) main_task: Started on CPU0
+
+I (141) main_task: Calling app_main()
+
+I (151) Board: UUID=d954a30a-bcd9-4a3b-9a1e-0547b29d2e80 SKU=bread-compact-c6
+
+I (151) button: IoT Button Version: 4.2.1
+
+W (151) CompactC6Board: === OLED detect start (SDA=11 SCL=10) ===
+
+W (681) CompactC6Board:   probe miss: addr=0x3C @ 400000Hz (0/2)
+
+W (721) CompactC6Board:   probe miss: addr=0x3D @ 400000Hz (0/2)
+
+W (761) CompactC6Board:   probe miss: addr=0x3C @ 100000Hz (0/2)
+
+W (801) CompactC6Board:   probe miss: addr=0x3D @ 100000Hz (0/2)
+
+W (821) CompactC6Board: OLED not ready yet, starting background retry task
+
+I (821) CompactC6Board: === button GPIO probe ===
+
+I (821) CompactC6Board:   boot(GPIO9)=1  touch(GPIO21)=0  vol+(GPIO20)=0  vol-(GPIO19)=0
+
+I (821) CompactC6Board:   (1=��=未按, 0=低=按下；按下面板按键看哪一路会变)
+
+W (831) CompactC6Board:   probe miss: addr=0x3C @ 400000Hz (0/1)
+
+I (841) CompactC6Board: btn_probe: watching 4 pins, 50ms poll (1=high/idle, 0=low/pressed)
+
+W (841) CompactC6Board: btn_probe: touch GPIO21 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+W (861) CompactC6Board: btn_probe: vol+  GPIO20 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+W (871) CompactC6Board:   probe miss: addr=0x3D @ 400000Hz (0/1)
+
+W (881) CompactC6Board: btn_probe: vol-  GPIO19 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+I (891) MCP: Add tool: self.lamp.get_state
+
+I (891) MCP: Add tool: self.lamp.turn_on
+
+I (901) MCP: Add tool: self.lamp.turn_off
+
+W (911) CompactC6Board:   probe miss: addr=0x3C @ 100000Hz (0/1)
+
+E BOD: Brownout detector was triggered
+
+
+
+
+
+ESP-ROM:esp32c6-20220919
+
+Build:Sep 19 2022
+
+rst:0x3 (LP_SW_HPSYS),boot:0x6c (SPI_FAST_FLASH_BOOT)
+
+Saved PC:0x4001974a
+
+SPIWP:0xee
+
+ESP-ROM:esp32c6-20220919
+
+Build:Sep 19 2022
+
+rst:0xf (LP_BOD_SYS),boot:0x6c (SPI_FAST_FLASH_BOOT)
+
+SPIWP:0xee
+
+mode:DIO, clock div:2
+
+load:0x40875730,len:0x550
+
+load:0x4086b910,len:0xcb0
+
+load:0x4086e610,len:0x2f30
+
+entry 0x4086b910
+
+I (30) cpu_start: Unicore app
+
+I (38) cpu_start: GPIO 17 and 16 are used as console UART I/O pins
+
+I (39) cpu_start: Pro cpu start user code
+
+I (39) cpu_start: cpu freq: 160000000 Hz
+
+I (40) app_init: Application information:
+
+I (44) app_init: Project name:     xiaozhi
+
+I (48) app_init: App version:      2.5.2
+
+I (51) app_init: Compile time:     Oct 14 2026 21:16:06
+
+I (56) app_init: ELF file SHA256:  bdc0b9e41...
+
+I (61) app_init: ESP-IDF:          v6.1
+
+I (64) efuse_init: Min chip rev:     v0.0
+
+I (68) efuse_init: Max chip rev:     v0.99 
+
+I (72) efuse_init: Chip rev:         v0.2
+
+I (76) heap_init: Initializing. RAM available for dynamic allocation:
+
+I (82) heap_init: At 4081FEF0 len 0005C720 (369 KiB): RAM
+
+I (87) heap_init: At 4087C610 len 00002F54 (11 KiB): RAM
+
+I (92) heap_init: At 50000024 len 00003FB4 (15 KiB): RTCRAM
+
+W (98) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig
+
+I (110) spi_flash: detected chip: generic
+
+I (114) spi_flash: flash io: qio
+
+I (118) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+
+I (123) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+
+I (130) main_task: Started on CPU0
+
+I (140) main_task: Calling app_main()
+
+I (150) Board: UUID=d954a30a-bcd9-4a3b-9a1e-0547b29d2e80 SKU=bread-compact-c6
+
+I (150) button: IoT Button Version: 4.2.1
+
+W (150) CompactC6Board: === OLED detect start (SDA=11 SCL=10) ===
+
+W (680) CompactC6Board:   probe miss: addr=0x3C @ 400000Hz (0/2)
+
+W (720) CompactC6Board:   probe miss: addr=0x3D @ 400000Hz (0/2)
+
+W (760) CompactC6Board:   probe miss: addr=0x3C @ 100000Hz (0/2)
+
+W (800) CompactC6Board:   probe miss: addr=0x3D @ 100000Hz (0/2)
+
+W (820) CompactC6Board: OLED not ready yet, starting background retry task
+
+I (820) CompactC6Board: === button GPIO probe ===
+
+I (820) CompactC6Board:   boot(GPIO9)=1  touch(GPIO21)=0  vol+(GPIO20)=0  vol-(GPIO19)=0
+
+I (820) CompactC6Board:   (1=��=未按, 0=低=按下；按下面板按键看哪一路会变)
+
+W (830) CompactC6Board:   probe miss: addr=0x3C @ 400000Hz (0/1)
+
+I (840) CompactC6Board: btn_probe: watching 4 pins, 50ms poll (1=high/idle, 0=low/pressed)
+
+W (840) CompactC6Board: btn_probe: touch GPIO21 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+W (860) CompactC6Board: btn_probe: vol+  GPIO20 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+W (870) CompactC6Board:   probe miss: addr=0x3D @ 400000Hz (0/1)
+
+W (880) CompactC6Board: btn_probe: vol-  GPIO19 is LOW at startup -- pin may be shorted to GND, or a peripheral took it over (USB D+/D- = GPIO19/20)
+
+I (890) MCP: Add tool: self.lamp.get_state
+
+I (890) MCP: Add tool: self.lamp.turn_on
+
+I (900) MCP: Add tool: self.lamp.turn_off
+
+W (910) CompactC6Board:   probe miss: addr=0x3C @ 100000Hz (0/1)
+
+W (940) CompactC6Board:   probe miss: addr=0x3D @ 100000Hz (0/1)
+
+W (960) CompactC6Board: OLED WATCH: still no ACK on 0x3C/0x3D @ 400k/100k
+
+I (1200) DogLegCtrl: ready: 4x SG90 @50Hz 500-2500us, pins=3,18,22,23
+
+I (1200) DogLegCtrl: servo limits: 10..170 deg (mid=90)
+
+I (1200) DogLegCtrl: duty(2^20 scale): 0deg=26214 90deg=78643 170deg=125199
+
+I (1200) MCP: Add tool: self.dog.do_action
+
+I (1210) MCP: Add tool: self.dog.get_state
+
+I (1210) MCP: Add tool: self.dog.calibrate
+
+I (1210) StateMachine: State: unknown -> starting
+
+W (1220) i2s_common: the rx channel on I2S0 is switched from master to slave for full-duplex mode
+
+I (1230) NoAudioCodec: Duplex channels created
+
+I (1230) AudioCodec: Audio codec started
+
+I (1240) Application: After board/audio init
+
+I (1240) SystemInfo: free sram: 276540 minimal sram: 276540
+
+I (1240) MCP: Add tool: self.get_device_status
+
+I (1250) MCP: Add tool: self.audio_speaker.set_volume
+
+I (1250) MCP: Add tool: self.get_system_info [user]
+
+I (1260) MCP: Add tool: self.reboot [user]
+
+I (1260) MCP: Add tool: self.upgrade_firmware [user]
+
+I (1270) MCP: Add tool: self.assets.set_download_url [user]
+
+I (1270) WifiManager: Initializing...
+
+I (1280) pp: pp rom version: 5b8dcfa
+
+I (1280) net80211: net80211 rom version: 5b8dcfa
+
+I (1290) wifi:wifi driver task: 408414c0, prio:23, stack:6656, core=0
+
+I (1290) wifi:wifi firmware version: e12a754
+
+I (1290) wifi:wifi certification version: v7.0
+
+I (1300) wifi:config NVS flash: disabled
+
+I (1300) wifi:config nano formatting: disabled
+
+I (1300) wifi:mac_version:HAL_MAC_ESP32AX_761,ut_version:N, band mode:0x1
+
+I (1310) wifi:Init data frame dynamic rx buffer num: 8
+
+I (1320) wifi:Init dynamic rx mgmt buffer num: 5
+
+I (1320) wifi:Init management short buffer num: 32
+
+I (1320) wifi:Init dynamic tx buffer num: 32
+
+I (1330) wifi:Init static tx FG buffer num: 2
+
+I (1330) wifi:Init static rx buffer size: 1700 (rxctrl:92, csi:512)
+
+I (1340) wifi:Init static rx buffer num: 6
+
+I (1340) wifi:Init dynamic rx buffer num: 8
+
+I (1350) wifi_init: rx ba win: 6
+
+I (1350) wifi_init: accept mbox: 6
+
+I (1350) wifi_init: tcpip mbox: 32
+
+I (1360) wifi_init: udp mbox: 6
+
+I (1360) wifi_init: tcp mbox: 6
+
+I (1360) wifi_init: tcp tx win: 5760
+
+I (1360) wifi_init: tcp rx win: 5760
+
+I (1370) wifi_init: tcp mss: 1440
+
+I (1370) wifi_init: WiFi SLP IRAM OP enabled
+
+I (1370) WifiManager: Initialized
+
+I (1380) WifiBoard: Starting WiFi connection attempt
+
+I (1380) WifiManager: Starting station
+
+I (1390) WifiStation: Station DHCP hostname: Xiaozhi-C2E0
+
+I (1390) phy_init: phy_version 345,552b044,Jul 14 2026,10:37:00
+
+I (1470) wifi:11ax coex: WDEVAX_PTI0(0x000a00a0), WDEVAX_PTI1(0x000142bf).
+
+
+
+I (1480) wifi:mode : sta (<chip-mac>)
+
+I (1480) wifi:enable tsf
+
+I (1480) WifiStation: Scanning saved channel 6
+
+I (1480) WifiBoard: WiFi scanning
+
+I (1600) WifiStation: Found AP: <SSID>, BSSID: <BSSID>, RSSI: -67, Channel: 6, Authmode: 4
+
+I (1600) WifiBoard: WiFi connecting to <SSID>
+
+W (1610) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2
+
+I (1730) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+
+I (1730) wifi:(connect)dot11_authmode:0x3, pairwise_cipher:0x3, group_cipher:0x3
+
+I (1730) wifi:state: init -> auth (0xb0)
+
+I (1740) CompactC6Board: KEY vol-(GPIO19) LONG press -> mute
+
+I (1740) wifi:state: auth -> assoc (0x0)
+
+I (1750) AudioCodec: Set output volume to 0
+
+I (1760) CompactC6Board: KEY vol+(GPIO20) LONG press -> max volume
+
+I (1760) AudioCodec: Set output volume to 100
+
+I (1770) wifi:(assoc)RESP, Extended Capabilities length:8, operating_mode_notification:0
+
+I (1770) wifi:(assoc)RESP, Extended Capabilities, MBSSID:0, TWT Responder:0, OBSS Narrow Bandwidth RU In OFDMA Tolerance:0
+
+I (1780) wifi:state: assoc -> run (0x10)
+
+I (1780) wifi:(trc)phytype:CBW20-SGI, snr:29, maxRate:144, highestRateIdx:0
+
+W (1790) wifi:(trc)band:2G, phymode:3, highestRateIdx:0, lowestRateIdx:11, dataSchedTableSize:14
+
+I (1800) wifi:(trc)band:2G, rate(L-MCS5, rateIdx:3), ampdu(rate:L-MCS5, schedIdx(3, stop:8)), snr:29, ampduState:wait operational
+
+I (1810) wifi:ifidx:0, rssi:-67, nf:-96, phytype(0x3, CBW20-SGI), phymode(0x3, 11bgn), max_rate:144, he:0, vht:0, ht:1
+
+I (1820) wifi:(ht)max.RxAMPDULenExponent:3(65535 bytes), MMSS:5(4 us)
+
+I (1830) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:1(originator)
+
+I (1830) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+
+I (1840) wifi:[ADDBA]RX DELBA, reason:39, delete tid:5, initiator:0(recipient)
+
+I (1850) wifi:[ADDBA]RX DELBA, reason:39, delete tid:7, initiator:0(recipient)
+
+I (1880) wifi:connected with <SSID>, aid = 5, channel 6, BW20, bssid = <BSSID>
+
+I (1880) wifi:security: WPA2-PSK, phy: bgn, rssi: -67, cipher(pairwise:0x3, group:0x3), pmf:0
+
+I (1880) wifi:pm start, type: 1, twt_start:0
+
+
+
+I (1890) wifi:pm start, type:1, aid:0x5, trans-BSSID:<BSSID>, BSSID[5]:0xc4, mbssid(max-indicator:0, index:0), he:0
+
+I (1900) wifi:dp: 1, bi: 102400, li: 10, scale listen interval from 1024000 us to 1024000 us
+
+I (1900) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+
+I (1910) wifi:[ADDBA]TX addba request, tid:0, dialogtoken:1, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x0)
+
+I (1920) wifi:[ADDBA]TX addba request, tid:7, dialogtoken:2, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x20)
+
+I (1930) wifi:[ADDBA]TX addba request, tid:5, dialogtoken:3, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x0)
+
+I (1950) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+
+I (1950) wifi:[ADDBA]RX addba response, status:0, tid:0/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+
+I (1960) wifi:[ADDBA]RX addba response, status:0, tid:7/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+
+I (1970) wifi:[ADDBA]RX addba response, status:0, tid:5/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+
+W (2010) wifi:<ba-add>idx:0, ifx:0, tid:0, TAHI:0x100c4f3, TALO:0xca219b68, (ssn:3, win:64, cur_ssn:3), CONF:0xc0000005
+
+W (2970) CompactC6Board:   probe HIT : addr=0x3C @ 400000Hz (1/1)
+
+W (2970) CompactC6Board: *** OLED WATCH: HIT addr=0x3C @ 400000Hz, installing driver ***
+
+I (2970) CompactC6Board: Install SSD1306 driver
+
+I (2970) CompactC6Board: SSD1306 driver installed
+
+I (3010) esp_netif_handlers: sta ip: 192.168.1.100, mask: 255.255.255.0, gw: 192.168.1.1
+
+I (3010) WifiStation: Got IP: 192.168.1.100
+
+I (3010) WifiBoard: Connected to WiFi: <SSID>
+
+I (3010) Application: Network connected
+
+I (3010) StateMachine: State: starting -> activating
+
+I (3020) Assets: The storage free size is 5952 KB
+
+I (3020) Assets: The assets map size is 448 KB (partition 8192 KB)
+
+I (3030) CompactC6Board: Turning display on
+
+I (3070) Assets: The checksum calculation time is 32 ms
+
+I (3070) MODEL_LOADER: Successfully load srmodels
+
+W (3070) Assets: Ignoring invalid text font asset font_noto_sans_common_14_1.bin
+
+I (3070) Assets: Refreshing display theme...
+
+I (3080) Ota: Current version: 2.5.2
+
+I (3130) Display: Power management not supported
+
+I (3130) OledDisplay: Initialize LVGL
+
+I (3130) OledDisplay: Adding OLED display
+
+I (3140) DeferredDisplay: attached real display, replayed UI state
+
+I (3140) CompactC6Board: OLED IS LIVE
+
+I (3130) LVGL: Starting LVGL task
+
+I (3550) esp-x509-crt-bundle: Certificate validated
+
+I (5420) HttpClient: Established new connection to api.tenclass.net:443 protocol=https cost=2340
+
+I (5580) HttpClient: HTTP connection closed
+
+I (5590) Ota: Current is the latest version
+
+I (5590) Ota: Running partition: ota_0
+
+I (5590) MQTT: Connecting to endpoint api.tenclass.net:8883
+
+I (5590) MQTT: Resolved MQTT host api.tenclass.net -> 47.112.110.152
+
+I (6200) esp-x509-crt-bundle: Certificate validated
+
+I (7280) MQTT: Connected to endpoint
+
+I (7280) Application: Activation done
+
+I (7280) SystemInfo: free sram: 177800 minimal sram: 158140
+
+I (7280) StateMachine: State: activating -> idle
+
+I (7290) WifiStation: Setting WiFi power save level: LOW_POWER (MAX_MODEM)
+
+I (7290) wifi:Set ps type: 2, coexist: 0
+
+
+
+Quantized wakenet9s: wakenet9s_tts2h8v2_你好小智_3_0.630_0.635, tigger:v4, mode:1, p:0, (Apr 17 2026 17:28:52)
+
+I (7380) EspWakeWord: Wake word(wn9s_nihaoxiaozhi),freq: 16000, chunksize: 512
+
+I (7390) LiteAudioEngine: Initialized, WakeNet: yes
+
+I (7390) AudioCodec: Set output enable to true
+
+I (7400) AudioCodec: Set input enable to true
+
+I (18240) SystemInfo: free sram: 157848 minimal sram: 112896
+
+I (28240) SystemInfo: free sram: 157848 minimal sram: 112896
+
+I (38240) SystemInfo: free sram: 157848 minimal sram: 112896
+
