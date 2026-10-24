@@ -37,3 +37,22 @@ Thumbs.db
 __pycache__/
 *.pyc
 .esptool_lib/
+
+# 立创 EDA 自动备份（每次保存都生成，不进仓库）
+*_backup/
+*.eprj_backup
+*.zip
+
+# 本地设计草稿（引脚搬运过程中的中间 json）
+pins.json
+pins_data.json
+pins_v2.json
+
+# 第三方工具包（4.5MB，用时自行下载）
+easyeda-api-skill-main/
+easyeda-api-skill.zip
+
+# PCB 设计未定稿，暂不入库（定稿后删掉本节再提交）
+pcb/
+xiaozhi_robot2/
+docs/pcb-design-*.md
